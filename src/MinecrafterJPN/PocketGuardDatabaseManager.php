@@ -2,7 +2,7 @@
 
 namespace MinecrafterJPN;
 
-use pocketmine\level\Position;
+use pocketmine\world\Position;
 
 class PocketGuardDatabaseManager
 {
@@ -65,9 +65,9 @@ class PocketGuardDatabaseManager
      */
     public function getOwner(Position $chest)
     {
-        $x = $chest->x;
-        $y = $chest->y;
-        $z = $chest->z;
+        $x = $chest->getX();
+        $y = $chest->getY();
+        $z = $chest->getZ();
         $result = $this->db->query("SELECT owner FROM chests WHERE x = $x AND y = $y AND z = $z")->fetchArray(SQLITE3_ASSOC);
         return $result === false ? null : $result['owner'];
     }
